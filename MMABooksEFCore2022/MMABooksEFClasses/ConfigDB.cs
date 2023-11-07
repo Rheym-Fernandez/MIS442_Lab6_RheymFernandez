@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
  * -- Install-Package Microsoft.EntityFrameworkCore.Tools could do from the console too
  * Get-Help about_EntityFrameworkCore from the console
  *        
- *      Scaffold-DbContext "server=127.0.0.1;uid=root;pwd=YOURPASSWORD;database=MMABooks" MySql.Data.EntityFrameworkCore -OutputDir Models -context MMABooksContext -project MMABooksEFClasses -startupproject MMABooksEFClasses -force
+ *    Scaffold-DbContext "server=127.0.0.1;uid=root;pwd=YOURPASSWORD;database=MMABooks" MySql.Data.EntityFrameworkCore -OutputDir Models -context MMABooksContext -project MMABooksEFClasses -startupproject MMABooksEFClasses -force
  */
 namespace MMABooksEFClasses
 {
