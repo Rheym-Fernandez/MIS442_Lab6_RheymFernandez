@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace MMABooksEFClasses.Models;
 
@@ -26,8 +27,15 @@ public partial class MMABooksContext : DbContext
     public virtual DbSet<State> States { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=127.0.0.1;uid=root;pwd=RemMYSQL1016$;database=MMABooks", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.2.0-mysql"));
+    {
+        string connectionString = ConfigDB.GetMySqlConnectionString();
+        if (!optionsBuilder.IsConfigured)
+        {
+            var serverVersion = new MySqlServerVersion(new Version(8, 0));
+            optionsBuilder.UseMySql(connectionString, serverVersion);
+        }
+
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
