@@ -78,8 +78,15 @@ namespace MMABooksTests
         [Test]
         public void CreateTest()
         {
-            //
-
+            //Must add first, then save.
+            //Then Assert that HI is not null, and look for it to make sure
+            //it was created.
+            s = new State();
+            s.StateCode = "HI";
+            s.StateName = "Hawaii";
+            dbContext.States.Add(s);
+            dbContext.SaveChanges();
+            Assert.IsNotNull(dbContext.States.Find("HI"));
         }
 
         [Test]
