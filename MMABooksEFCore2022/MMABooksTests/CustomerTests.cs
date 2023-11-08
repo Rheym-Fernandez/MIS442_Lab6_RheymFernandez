@@ -11,7 +11,7 @@ namespace MMABooksTests
     [TestFixture]
     public class CustomerTests
     {
-        /*
+        
         MMABooksContext dbContext;
         Customer? c;
         List<Customer>? customers;
@@ -87,6 +87,6 @@ namespace MMABooksTests
                 Console.WriteLine(c);
             }
         }
-        */
+        
     }
 }

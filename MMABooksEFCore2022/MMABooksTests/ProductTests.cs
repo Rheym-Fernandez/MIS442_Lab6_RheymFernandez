@@ -11,8 +11,11 @@ namespace MMABooksTests
     [TestFixture]
     public class ProductTests
     {
-        
+        // ignore this warning about making dbContext nullable.
+        // if you add the ?, you'll get a warning wherever you use dbContext
         MMABooksContext dbContext;
+        Products? p;
+        List<Products>? products;
 
         [SetUp]
         public void Setup()
@@ -24,6 +27,11 @@ namespace MMABooksTests
         [Test]
         public void GetAllTest()
         {
+            //This asserts that when retrieving data, there should be a total of 53 results for state name.
+            products = dbContext.Products.OrderBy(p => p.ProductCode).ToList();
+            Assert.AreEqual(16, products.Count);
+            Assert.AreEqual("A4CS", products[0].ProductCode);
+            PrintAll(products);
         }
 
         [Test]
@@ -68,6 +76,14 @@ namespace MMABooksTests
         {
 
         }
-       
+
+        public void PrintAll(List<Products> products)
+        {
+            foreach (Products p in products)
+            {
+                Console.WriteLine(p);
+            }
+        }
+
     }
 }
