@@ -11,7 +11,7 @@ namespace MMABooksTests
     [TestFixture]
     public class ProductTests
     {
-        /*
+        
         MMABooksContext dbContext;
 
         [SetUp]
@@ -68,6 +68,6 @@ namespace MMABooksTests
         {
 
         }
-       */
+       
     }
 }
