@@ -40,8 +40,9 @@ namespace MMABooksTests
         public void GetByPrimaryKeyTest()
         {
             //This code gets the product that has a code of A4VB
-            //Assert.AreEqual("Ore", s.StateName) means that the code "A4VB" is equivalent to the product description of
-            // "Murach's ASP.NET 4 Web Programming with VB 2010"
+            //Assert.AreEqual("Murach's ASP.NET 4 Web Programming with VB 2010", p.Description) means that
+            //the code "A4VB" is equivalent to the product description of "Murach's ASP.NET 4 Web
+            //Programming with VB 2010"
             p = dbContext.Products.Find("A4VB");
             Assert.IsNotNull(p);
             Assert.AreEqual("Murach's ASP.NET 4 Web Programming with VB 2010", p.Description);
