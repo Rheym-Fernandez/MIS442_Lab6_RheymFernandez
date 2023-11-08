@@ -27,7 +27,7 @@ namespace MMABooksTests
         [Test]
         public void GetAllTest()
         {
-            //This asserts that when retrieving data, there should be a total of 53 results for state name.
+            //This asserts that when retrieving data, there should be a total of 16 results for the product code.
             products = dbContext.Products.OrderBy(p => p.ProductCode).ToList();
             Assert.AreEqual(16, products.Count);
             Assert.AreEqual("A4CS", products[0].ProductCode);
@@ -37,6 +37,13 @@ namespace MMABooksTests
         [Test]
         public void GetByPrimaryKeyTest()
         {
+            //This code gets the product that has a code of A4VB
+            //Assert.AreEqual("Ore", s.StateName) means that the code "A4VB" is equivalent to the product description of
+            // "Murach's ASP.NET 4 Web Programming with VB 2010"
+            p = dbContext.Products.Find("A4VB");
+            Assert.IsNotNull(p);
+            Assert.AreEqual("Murach's ASP.NET 4 Web Programming with VB 2010", p.Description);
+            Console.WriteLine(p);
         }
 
         [Test]
