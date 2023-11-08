@@ -49,7 +49,13 @@ namespace MMABooksTests
         [Test]
         public void GetUsingWhere()
         {
-            // get a list of all of the products that have a unit price of 56.50
+            //Get a list of all of the products that have a unit price of 56.50
+            //First line gets the code of all products that have a cost of 56.50; then outputting it to a list.
+            //Based on the MYSQL query, I am asserting that there should be 7 products returned with a price of 56.5
+            products = dbContext.Products.Where(p  => p.UnitPrice.Equals(56.5m)).OrderBy(p => p.ProductCode).ToList();
+            Assert.AreEqual(7, products.Count);
+            Assert.AreEqual("A4CS", products[0].ProductCode);
+            PrintAll(products);
         }
 
         [Test]
