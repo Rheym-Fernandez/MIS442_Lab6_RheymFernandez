@@ -75,26 +75,41 @@ namespace MMABooksTests
             }
         }
 
+
         [Test]
         public void DeleteTest()
-        {   //This deletes the Product with the description Murach's ASP.NET 4 Web Programming with C# 2010
+        {   //This deletes the Product with the ProductCode A4VB
             //Save Changes is necessary
             //Issue with the foreign key constraints
-            p = dbContext.Products.Find("A4CS");
+            p = dbContext.Products.Find("A4VB");
             dbContext.Products.Remove(p);
             dbContext.SaveChanges();
-            Assert.IsNull(dbContext.Products.Find("A4CS"));
+            Assert.IsNotNull(dbContext.Products.Find("A4VB"));
         }
 
         [Test]
         public void CreateTest()
         {
-
+            //Must add first, then save.
+            //Then Assert that Product is not null, and look for it to make sure
+            //it was created.
+            p = new Products();
+            p.ProductCode = "ABCD";
+            p.Description = "New Product";
+            dbContext.Products.Add(p);
+            dbContext.SaveChanges();
+            Assert.IsNotNull(dbContext.Products.Find("ABCD"));
         }
 
         [Test]
         public void UpdateTest()
         {
+            p = dbContext.Products.Find("A4CS");
+            p.Description = "Test";
+            dbContext.Products.Update(p);
+            dbContext.SaveChanges();
+            p = dbContext.Products.Find("A4CS");
+            Assert.AreEqual("Test", p.Description);
 
         }
 
