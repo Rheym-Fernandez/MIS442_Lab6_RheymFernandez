@@ -5,6 +5,7 @@ using System;
 using NUnit.Framework;
 using MMABooksEFClasses.MarisModels;
 using Microsoft.EntityFrameworkCore;
+//using MMABooksEFClasses.Models;
 
 namespace MMABooksTests
 {
@@ -26,6 +27,11 @@ namespace MMABooksTests
         [Test]
         public void GetAllTest()
         {
+            //This asserts that when retrieving data, there should be a total of 16 results for the product code.
+            customers = dbContext.Customers.OrderBy(c => c.CustomerId).ToList();
+            Assert.AreEqual(696, customers.Count);
+            Assert.AreEqual(1, customers[0].CustomerId);
+            PrintAll(customers);
         }
 
         [Test]
