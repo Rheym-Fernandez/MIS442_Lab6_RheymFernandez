@@ -49,7 +49,12 @@ namespace MMABooksTests
         [Test]
         public void GetUsingWhere()
         {
-            // get a list of all of the customers who live in OR
+            //Get a list of all of the customers who live in OR
+            customers = dbContext.Customers.Where(c => c.StateCode.StartsWith("OR")).OrderBy(c => c.CustomerId).ToList();
+            Assert.AreEqual(5, customers.Count);
+            Assert.AreEqual("Swenson, Vi", customers[0].Name);
+            PrintAll(customers);
+
         }
 
         [Test]
