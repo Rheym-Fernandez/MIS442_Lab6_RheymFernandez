@@ -27,7 +27,7 @@ namespace MMABooksTests
         [Test]
         public void GetAllTest()
         {
-            //This asserts that when retrieving data, there should be a total of 16 results for the product code.
+            //This asserts that when retrieving data, there should be a total of 696 results for the customer id.
             customers = dbContext.Customers.OrderBy(c => c.CustomerId).ToList();
             Assert.AreEqual(696, customers.Count);
             Assert.AreEqual(1, customers[0].CustomerId);
@@ -37,7 +37,14 @@ namespace MMABooksTests
         [Test]
         public void GetByPrimaryKeyTest()
         {
+            //This code gets the Customer with the ID of 1 
+            //Assert.AreEqual("Molunguri, A", c.Name)) means that the ID should be Molunguri, A
+            c = dbContext.Customers.Find(1);
+            Assert.IsNotNull(c);
+            Assert.AreEqual("Molunguri, A", c.Name);
+            Console.WriteLine(c);
         }
+
 
         [Test]
         public void GetUsingWhere()
