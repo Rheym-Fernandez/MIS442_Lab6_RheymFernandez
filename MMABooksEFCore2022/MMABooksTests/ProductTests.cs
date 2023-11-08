@@ -15,6 +15,8 @@ namespace MMABooksTests
         // if you add the ?, you'll get a warning wherever you use dbContext
         MMABooksContext dbContext;
         Products? p;
+        Invoicelineitems? il;
+        List<Invoicelineitems> items;
         List<Products>? products;
 
         [SetUp]
@@ -74,8 +76,13 @@ namespace MMABooksTests
 
         [Test]
         public void DeleteTest()
-        {
-
+        {   //This deletes the Product with the description Murach's ASP.NET 4 Web Programming with C# 2010
+            //Save Changes is necessary
+            //Issue with the foreign key constraints
+            p = dbContext.Products.Find("A4CS");
+            dbContext.Products.Remove(p);
+            dbContext.SaveChanges();
+            Assert.IsNull(dbContext.Products.Find("A4CS"));
         }
 
         [Test]
