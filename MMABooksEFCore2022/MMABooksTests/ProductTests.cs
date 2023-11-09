@@ -78,7 +78,7 @@ namespace MMABooksTests
 
         [Test]
         public void DeleteTest()
-        {
+        {   //NEEDS TO BE FIXED BECAUSE IT CANNOT WORK WIRH FOREIGN KEY CONSTRAINTS.
             //This deletes the Product with the ProductCode A4VB
             //Save Changes is necessary
             //Issue with the foreign key constraints

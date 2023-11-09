@@ -99,6 +99,7 @@ namespace MMABooksTests
         [Test]
         public void CreateTest()
         {
+            //THIS IS GIVING ME A DUPLICARE ENTRY ERROR.
             c = new Customer();
             c.CustomerId = 1;
             c.Name = "Molunguri, A";
