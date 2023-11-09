@@ -88,19 +88,38 @@ namespace MMABooksTests
         [Test]
         public void DeleteTest()
         {
+            //First finds the CustomerId of 1 then removes it from the Customers table
+            c = dbContext.Customers.Find(1);
+            dbContext.Customers.Remove(c);
+            dbContext.SaveChanges();
+            Assert.IsNull(dbContext.Customers.Find(1));
 
         }
 
         [Test]
         public void CreateTest()
         {
-
+            c = new Customer();
+            c.CustomerId = 1;
+            c.Name = "Molunguri, A";
+            c.Address = "Test Address";
+            c.City = "Portland";
+            c.State = dbContext.States.Find("OR");
+            c.ZipCode = "123456";
+            dbContext.Customers.Add(c);
+            dbContext.SaveChanges();
+            Assert.IsNotNull(dbContext.Customers.Find("Molunguri, A"));
         }
 
         [Test]
         public void UpdateTest()
         {
-
+            c = dbContext.Customers.Find(2);
+            c.Address = "Test";
+            dbContext.Customers.Update(c);
+            dbContext.SaveChanges();
+            c = dbContext.Customers.Find(2);
+            Assert.AreEqual("Test", c.Address);
         }
 
         public void PrintAll(List<Customer> customers)

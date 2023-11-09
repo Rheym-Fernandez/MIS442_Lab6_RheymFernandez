@@ -78,7 +78,8 @@ namespace MMABooksTests
 
         [Test]
         public void DeleteTest()
-        {   //This deletes the Product with the ProductCode A4VB
+        {
+            //This deletes the Product with the ProductCode A4VB
             //Save Changes is necessary
             //Issue with the foreign key constraints
             p = dbContext.Products.Find("A4VB");
