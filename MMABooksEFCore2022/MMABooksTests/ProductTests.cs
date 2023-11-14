@@ -11,7 +11,7 @@ namespace MMABooksTests
     [TestFixture]
     public class ProductTests
     {
-        // ignore this warning about making dbContext nullable.
+        // ignore this warning about making dbContext nullable
         // if you add the ?, you'll get a warning wherever you use dbContext
         MMABooksContext dbContext;
         Products? p;
