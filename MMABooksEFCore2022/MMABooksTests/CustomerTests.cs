@@ -3,9 +3,8 @@ using System.Linq;
 using System;
 
 using NUnit.Framework;
-using MMABooksEFClasses.MarisModels;
+using MMABooksEFClasses.Models;
 using Microsoft.EntityFrameworkCore;
-//using MMABooksEFClasses.Models;
 
 namespace MMABooksTests
 {
@@ -50,7 +49,7 @@ namespace MMABooksTests
         public void GetUsingWhere()
         {
             //Get a list of all of the customers who live in OR
-            customers = dbContext.Customers.Where(c => c.StateCode.StartsWith("OR")).OrderBy(c => c.CustomerId).ToList();
+            customers = dbContext.Customers.Where(c => c.State.StartsWith("OR")).OrderBy(c => c.CustomerId).ToList();
             Assert.AreEqual(5, customers.Count);
             Assert.AreEqual("Swenson, Vi", customers[0].Name);
             PrintAll(customers);
@@ -74,9 +73,9 @@ namespace MMABooksTests
             //Get a list of objects that include the customer id, name, statecode and statename
             var customers = dbContext.Customers.Join(
                dbContext.States,
-               c => c.StateCode,
+               c => c.State,
                s => s.StateCode,
-               (c, s) => new { c.CustomerId, c.Name, c.StateCode, s.StateName }).OrderBy(r => r.StateName).ToList();
+               (c, s) => new { c.CustomerId, c.Name, c.State, s.StateName }).OrderBy(r => r.StateName).ToList();
             Assert.AreEqual(696, customers.Count);
             // I wouldn't normally print here but this lets you see what each object looks like
             foreach (var c in customers)
@@ -101,11 +100,11 @@ namespace MMABooksTests
         {
             //THIS IS GIVING ME A DUPLICARE ENTRY ERROR.
             c = new Customer();
-            c.CustomerId = 1;
+            c.CustomerId = 0;
             c.Name = "Molunguri, A";
             c.Address = "Test Address";
             c.City = "Portland";
-            c.State = dbContext.States.Find("OR");
+            c.State = "OR";
             c.ZipCode = "123456";
             dbContext.Customers.Add(c);
             dbContext.SaveChanges();

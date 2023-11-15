@@ -3,7 +3,7 @@ using System.Linq;
 using System;
 
 using NUnit.Framework;
-using MMABooksEFClasses.MarisModels;
+using MMABooksEFClasses.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MMABooksTests
@@ -14,10 +14,12 @@ namespace MMABooksTests
         // ignore this warning about making dbContext nullable
         // if you add the ?, you'll get a warning wherever you use dbContext
         MMABooksContext dbContext;
-        Products? p;
-        Invoicelineitems? il;
-        List<Invoicelineitems> items;
-        List<Products>? products;
+        Product? p;
+        List<MMABooksEFClasses.Models.Product>? products;
+
+        Invoicelineitem? il;
+        List<Invoicelineitem> items;
+        
 
         [SetUp]
         public void Setup()
@@ -94,7 +96,7 @@ namespace MMABooksTests
             //Must add first, then save.
             //Then Assert that Product is not null, and look for it to make sure
             //it was created.
-            p = new Products();
+            p = new Product();
             p.ProductCode = "ABCD";
             p.Description = "New Product";
             dbContext.Products.Add(p);
@@ -114,9 +116,9 @@ namespace MMABooksTests
 
         }
 
-        public void PrintAll(List<Products> products)
+        public void PrintAll(List<Product> products)
         {
-            foreach (Products p in products)
+            foreach (Product p in products)
             {
                 Console.WriteLine(p);
             }
