@@ -1,6 +1,22 @@
+using MMABooksEFClasses.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// Add Cors Policy - In a Production App lock this down!
+builder.Services.AddCors(options => {
+    options.AddDefaultPolicy(
+    builder => {
+        builder.AllowAnyOrigin()
+        .WithMethods("POST", "PUT", "DELETE", "GET", "OPTIONS")
+        .AllowAnyHeader();
+    });
+});
+
+// Adding the DbContext to the Service
+builder.Services.AddDbContext<MMABooksContext>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -16,7 +32,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+
+// enables the cors policy
+app.UseCors();
 
 app.UseAuthorization();
 
