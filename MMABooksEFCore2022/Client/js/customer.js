@@ -8,7 +8,7 @@ class CustomerPage {
     };
 
     // instance variables that the app needs but are not part of the "state" of the application
-    this.server = "http://localhost:5000/api"
+      this.server = "http://localhost:44392/api"
     this.url = this.server + "/customers";
 
     // instance variables related to ui elements simplifies code in other places
